@@ -25,7 +25,7 @@ export function useComumns({ prices, setPrices }) {
       dataIndex: "image",
       key: "image",
       render: (url) => {
-        return <>{ url && <img style={{ height: "50px", width: "50px" }} src={url}></img> } </>;
+        return <>{ url && <img style={{ height: "50px", width: "50px" }} alt = "food" src={url}></img> } </>;
       },
     },
     {

@@ -1,6 +1,6 @@
 import { Button, Table, notification } from "antd";
 import React, { useEffect, useState } from "react";
-import { columns, components, useComumns } from "./utils";
+import { components, useComumns } from "./utils";
 import axios from "axios";
 
 export function Menu() {
