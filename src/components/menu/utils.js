@@ -8,6 +8,7 @@ export function useComumns({ prices, setPrices }) {
       title: "category",
       dataIndex: "category",
       key: "category",
+      width:"10rem"
     },
     {
       title: "Id",
