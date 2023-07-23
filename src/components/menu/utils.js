@@ -8,7 +8,7 @@ export function useComumns({ prices, setPrices }) {
       title: "category",
       dataIndex: "category",
       key: "category",
-      width:"10rem"
+      width: "10rem",
     },
     {
       title: "Id",
@@ -25,7 +25,17 @@ export function useComumns({ prices, setPrices }) {
       dataIndex: "image",
       key: "image",
       render: (url) => {
-        return <>{ url && <img style={{ height: "50px", width: "50px" }} alt = "food" src={url}></img> } </>;
+        return (
+          <>
+            {url && (
+              <img
+                style={{ height: "50px", width: "50px" }}
+                alt="food"
+                src={url}
+              ></img>
+            )}{" "}
+          </>
+        );
       },
     },
     {
@@ -43,9 +53,11 @@ export function useComumns({ prices, setPrices }) {
       dataIndex: "price",
       key: "price",
       render: (price, data) => {
-        console.log(data);
         return (
-          <> {data && <> {prices.filter((p) => p.id === data.id)[0]?.price}</>}</>
+          <>
+            {" "}
+            {data && <> {prices.filter((p) => p.id === data.id)[0]?.price}</>}
+          </>
         );
       },
       editable: prices,

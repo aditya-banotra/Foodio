@@ -6,12 +6,13 @@ import axios from "axios";
 export function Menu() {
   const [dataSource, setDataSource] = useState(null);
   const [prices, setPrices] = useState([]);
+
   function onSave() {
     localStorage.setItem("foodioPrice", JSON.stringify(prices));
     notification.success({
-        message: 'Prices Saved',
-        description: 'prices were saved',
-        placement: 'top'
+      message: "Prices Saved",
+      description: "prices were saved",
+      placement: "top",
     });
   }
   function onReset() {
@@ -19,24 +20,28 @@ export function Menu() {
     const priceArray = JSON.parse(prices);
     setPrices(priceArray);
     notification.success({
-        message: 'Prices Reset',
-        description: 'prices were reset',
-        placement: 'top'
+      message: "Prices Reset",
+      description: "prices were reset",
+      placement: "top",
     });
   }
+
   async function getData() {
-    const { data } = await axios.get(
-      "https://foodiobe.onrender.com"
-    );
+    const { data } = await axios.get("https://foodiobe.onrender.com");
 
     const prices = localStorage.getItem("foodioPrice");
     if (prices) {
       const priceArray = JSON.parse(prices);
       setPrices(priceArray);
     } else {
-      const prices = data.map((item) => {
-        return { id: item.id, price: item.price };
-      });
+      const prices = data
+        .reduce((acc, curr) => {
+          acc.push(...curr?.children);
+          return acc;
+        }, [])
+        .map((item) => {
+          return { id: item.id, price: item.price };
+        });
       localStorage.setItem("foodioPrice", JSON.stringify(prices));
       setPrices(prices);
     }
@@ -50,7 +55,6 @@ export function Menu() {
 
   const handleSave = (row) => {
     const newData = [...prices];
-    console.log(row);
     const index = newData.findIndex((item) => row.id === item.id);
     const item = newData[index];
     newData.splice(index, 1, {
