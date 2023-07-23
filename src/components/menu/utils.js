@@ -44,7 +44,7 @@ export function useComumns({ prices, setPrices }) {
       key: "price",
       render: (price, data) => {
         return (
-          <> {data?.id && <> {prices.filter((p) => p.id === data.id)[0].price}</>}</>
+          <> {data?.id && <> {prices.filter((p) => p.id === data.id)[0]?.price}</>}</>
         );
       },
       editable: prices,
